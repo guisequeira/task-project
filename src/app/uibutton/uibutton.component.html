@@ -1,0 +1,5 @@
+<ion-button [disabled]="antonio">
+  {{textButton}}
+  <ion-spinner name="circles" class="ion-margin-start" *ngIf="isLoading"></ion-spinner>
+  <ion-icon name="checkmark-circle-outline" class="ion-margin-start" *ngIf="isSuccess"></ion-icon>
+</ion-button>

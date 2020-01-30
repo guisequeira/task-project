@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Tarefas</ion-title>
+    <ion-button color="light" slot="end" class="ion-margin" fill="outline" (click)="onLogout()">Logout</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nova tarefa</ion-card-title>
+    </ion-card-header>
+    <ion-card-content [formGroup]="formTask">
+      <ion-item>
+        <ion-label position="floating">Descrição</ion-label>
+        <ion-input formControlName="description"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Prioridade</ion-label>
+        <ion-select placeholder="Prioridade" formControlName="priority">
+          <ion-select-option value="high">Alta</ion-select-option>
+          <ion-select-option value="medium">Média</ion-select-option>
+          <ion-select-option value="low">baixa</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-row justify-content-center class="ion-padding-top">
+        <ion-button color="primary" (click)="onSubmitForm()" [disabled]="formTask.invalid">
+          Adicionar
+          <ion-spinner name="circles" class="ion-margin-start" *ngIf="isLoading"></ion-spinner>
+        </ion-button>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Minhas tarefas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item-sliding *ngFor="let task of (task$ | async | sortBy:'createTime':'desc' )">
+          <app-task-list-item [task]="task"></app-task-list-item>
+          <app-task-list-item [task]="task"></app-task-list-item>
+          <ion-item-options side="end">
+            <ion-item-option (click)="onDeleteTask(task)" color="danger" large>
+              <ion-icon name="trash" class="task--icon"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

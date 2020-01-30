@@ -1,0 +1,7 @@
+<ion-item [disabled]="disabled">
+  <ion-label >{{task.description | titlecase}}</ion-label>
+  <ion-spinner name="dots" *ngIf="disabled"></ion-spinner>
+  <ion-badge [color]="task.priority | translatePriority: true" class="ion-margin">{{task.priority | translatePriority}}
+  </ion-badge>
+  <ion-toggle slot="end" color="tertiary" [checked]="task.todo" (ionChange)="onChangeToggle($event, task.id)"></ion-toggle>
+</ion-item>

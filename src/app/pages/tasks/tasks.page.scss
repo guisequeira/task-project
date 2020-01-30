@@ -1,0 +1,12 @@
+.task{
+  &--content{
+    justify-items: center;
+  }
+  &--card{
+    max-width: 30rem;
+  }
+
+  &--icon{
+    font-size: 2rem;
+  }
+}
